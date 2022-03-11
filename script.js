@@ -1,21 +1,30 @@
-let numbers = document.querySelectorAll('[data-number]');
-let operators = document.querySelectorAll('[data-operator]')
-let currentDisplayNumber = document.querySelector('[data-current-number]');
-let previousDisplayNumber = document.querySelector('[data-previous-number]');
-let allClearButton = document.querySelector('[data-all-clear]');
-let clearButton = document.querySelector('[data-clear]');
-let equalButton = document.querySelector('[data-equal]');
+const numbers = document.querySelectorAll('[data-number]');
+const operators = document.querySelectorAll('[data-operator]')
+const currentDisplayNumber = document.querySelector('[data-current-number]');
+const previousDisplayNumber = document.querySelector('[data-previous-number]');
+const allClearButton = document.querySelector('[data-all-clear]');
+const clearButton = document.querySelector('[data-clear]');
+const equalButton = document.querySelector('[data-equal]');
+const percentageButton = document.querySelector('[data-percentage]');
 let currentNumber = '';
 let previousNumber = '';
 let operator = '';
 
+//Number Buttons
 numbers.forEach(button => {
     button.addEventListener('click', () => {
+      if (currentDisplayNumber.innerHTML === "0"){
+        currentDisplayNumber.innerHTML = button.innerHTML;
+        currentNumber = parseFloat(button.innerHTML);
+        return;
+      }
       currentDisplayNumber.innerHTML = currentDisplayNumber.innerHTML + button.innerHTML;
       currentNumber = parseInt(currentDisplayNumber.innerText);
+      console.log(currentNumber)
+      console.log(typeof(currentNumber))
     })
 })
-
+//Operator Buttons
 operators.forEach(button => {
   button.addEventListener('click', () =>{
     if(isNaN(previousDisplayNumber.innerHTML.slice(-1)) 
@@ -51,7 +60,7 @@ function clear(){
   currentDisplayNumber.innerText = currentDisplayNumber.innerText.slice(0, -1);
 }
 
-//calculator function
+//Calculator Function
 function calculator(){
   if(previousNumber === '' && currentNumber === '') return
   switch(operator){
@@ -74,14 +83,24 @@ function calculator(){
   operator = '';
 }
 
+//Percentage Button
+percentageButton.addEventListener('click', () => {
+  if(currentNumber === 0) return;
+  currentNumber = currentNumber * 0.01;
+  currentDisplayNumber.innerHTML = currentNumber;
+})
+
+//All Clear Button
 allClearButton.addEventListener('click', () => {
   clearAll();
 })
 
+//Clear Button
 clearButton.addEventListener('click', () => {
   clear();
 })
 
+//Equal Button
 equalButton.addEventListener('click', () => {
   calculator();
   currentDisplayNumber.innerText = currentNumber;
