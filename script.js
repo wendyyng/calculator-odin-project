@@ -20,12 +20,17 @@ numbers.forEach(button => {
       }
 
       if (button.innerHTML === '.' && currentDisplayNumber.innerHTML.includes('.')) return
+      if (button.innerHTML === '.'){
+        currentDisplayNumber.innerHTML = currentDisplayNumber.innerHTML + button.innerHTML;
+        return;
+      }
       if (currentDisplayNumber.innerHTML.length >= 20) return;
 
-      currentDisplayNumber.innerHTML = currentDisplayNumber.innerHTML.replace(/,/g,'') + button.innerHTML;
+    currentDisplayNumber.innerHTML = currentDisplayNumber.innerHTML.replace(/,/g,'') + button.innerHTML;
+    console.log(currentDisplayNumber.innerHTML)
       currentNumber = parseFloat(currentDisplayNumber.innerHTML);
-      currentDisplayNumber.innerHTML = parseInt(currentDisplayNumber.innerHTML).toLocaleString('en', {
-        maximumFractionDigits: 0});
+      console.log(currentNumber)
+      currentDisplayNumber.innerHTML = parseFloat(currentDisplayNumber.innerHTML).toLocaleString('en');
         console.log(currentNumber)
         console.log(currentDisplayNumber.innerHTML)
     })
@@ -109,7 +114,6 @@ clearButton.addEventListener('click', () => {
 //Equal Button
 equalButton.addEventListener('click', () => {
   calculator();
-  currentDisplayNumber.innerHTML = currentNumber.toLocaleString('en', {
-    maximumFractionDigits: 0});
+  currentDisplayNumber.innerHTML = currentNumber.toLocaleString('en');
   previousDisplayNumber.innerHTML = '';
 })
