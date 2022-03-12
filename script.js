@@ -18,10 +18,16 @@ numbers.forEach(button => {
         currentNumber = parseFloat(button.innerHTML);
         return;
       }
-      currentDisplayNumber.innerHTML = currentDisplayNumber.innerHTML + button.innerHTML;
-      currentNumber = parseInt(currentDisplayNumber.innerText);
-      console.log(currentNumber)
-      console.log(typeof(currentNumber))
+
+      if (button.innerHTML === '.' && currentDisplayNumber.innerHTML.includes('.')) return
+      if (currentDisplayNumber.innerHTML.length >= 20) return;
+
+      currentDisplayNumber.innerHTML = currentDisplayNumber.innerHTML.replace(/,/g,'') + button.innerHTML;
+      currentNumber = parseFloat(currentDisplayNumber.innerHTML);
+      currentDisplayNumber.innerHTML = parseInt(currentDisplayNumber.innerHTML).toLocaleString('en', {
+        maximumFractionDigits: 0});
+        console.log(currentNumber)
+        console.log(currentDisplayNumber.innerHTML)
     })
 })
 //Operator Buttons
@@ -50,14 +56,14 @@ operators.forEach(button => {
 })
 
 function clearAll(){
-  currentDisplayNumber.innerText = '';
-  previousDisplayNumber.innerText = '';
+  currentDisplayNumber.innerHTML = '';
+  previousDisplayNumber.innerHTML = '';
   currentNumber = '';
   previousNumber = '';
 
 }
 function clear(){
-  currentDisplayNumber.innerText = currentDisplayNumber.innerText.slice(0, -1);
+  currentDisplayNumber.innerHTML = currentDisplayNumber.innerHTML.slice(0, -1);
 }
 
 //Calculator Function
@@ -103,6 +109,7 @@ clearButton.addEventListener('click', () => {
 //Equal Button
 equalButton.addEventListener('click', () => {
   calculator();
-  currentDisplayNumber.innerText = currentNumber;
-  previousDisplayNumber.innerText = '';
+  currentDisplayNumber.innerHTML = currentNumber.toLocaleString('en', {
+    maximumFractionDigits: 0});
+  previousDisplayNumber.innerHTML = '';
 })
