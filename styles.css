@@ -1,27 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Dosis&display=swap');
+
 * {
-    font-family: 'Times New Roman', Times, serif, sans-sarif;
+    font-family: 'Dosis', sans-serif;
     box-sizing: border-box;
     font-weight: bold;
-   
 }
 body {
-    background-color: antiquewhite;
+    background-image: linear-gradient(#eaa2d8, #6068c2);
+    height: 100vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     padding: 0;
-    padding-top: 10px;
-
+    padding-top: 5px;
+    margin:0;
 }
+
+
 .calculator-outer {
     display: flex;
     justify-content: center;
-    background-color: black;
+    background-color: #CDB4DB;
     width: 450px;
     border-radius: 10px;
     padding: 10px;
     padding-top: 50px;
     padding-bottom: 30px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 .calculator-inner {
     display: grid;
@@ -32,7 +41,7 @@ body {
 }
 
 .screen{
-    border: 1px solid black;
+    border: 1px solid #CDB4DB;
     grid-column: span 4;
     background-color: aliceblue;
     border-radius: 10px;
@@ -42,6 +51,7 @@ body {
     justify-content: space-around;
     flex-direction: column;
     padding: 10px;
+    
 }
 
 .previous {
@@ -53,7 +63,7 @@ body {
 }
 
 button {
-    border: 1px solid black;
+    border: 1px solid rgb(151, 126, 144);
     height: 100px;
     min-width: 100px;
     border-radius: 50px;
@@ -64,13 +74,13 @@ button {
     grid-column: span 2;
 }
 
-.orange-symbols {
-    background-color: orange;
+.symbols {
+    background-color: #FFAFCC;
 }
 
 .grey:hover {
-    background-color: rgb(148, 141, 141);
+    background-color: rgb(201, 195, 195);
 }
-.orange-symbols:hover {
-    background-color: #b16100;
+.symbols:hover {
+    background-color: #ca678b;
 }
